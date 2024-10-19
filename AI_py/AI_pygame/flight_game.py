@@ -15,9 +15,9 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 
 # 加载图像
-player_img = pygame.image.load("D:\\Programming\\Python\\AI_py\\pngs\\Ferris.png")
-enemy_img = pygame.image.load("D:\\Programming\\Python\\AI_py\\pngs\\Ferris_Crab.png")
-bullet_img = pygame.image.load("D:\\Programming\\Python\\AI_py\\pngs\\bullet.jpg")
+player_img = pygame.image.load("D:\\Programming\\Python\\AI_py\\AI_pygame\\pngs\\Ferris.png")
+enemy_img = pygame.image.load("D:\\Programming\\Python\\AI_py\\AI_pygame\\pngs\\Ferris_Crab.png")
+bullet_img = pygame.image.load("D:\\Programming\\Python\\AI_py\\AI_pygame\\pngs\\bullet.jpg")
 
 # 缩放图像
 player_img = pygame.transform.scale(player_img, (50, 40))

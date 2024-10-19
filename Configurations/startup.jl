@@ -1,26 +1,25 @@
-ENV["JULIA_PKG_SERVER"] = "https://mirrors.nju.edu.cn/julia/"
+
 ENV["JULIA_EDITOR"] = "code.cmd"
 
 import Pkg
 Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-using Revise
-using BenchmarkTools
-using Weave
 
 
 atreplinit() do repl
-    try
-        @eval using OhMyREPL
-    catch e
-        @warn "error while importing OhMyREPL" e
+    for pkg in [:OhMyREPL, :Revise, :BenchmarkTools, :Weave]
+        try
+            @eval using $pkg
+        catch e
+            @warn "error while importing $pkg" e
+        end
     end
 end
 
 
 ############ my functions
 function connect_laptop()
-	@eval using Pluto
-	Pluto.run(;port=1234,threads=12,require_secret_for_access=false,launch_browser=false)
+    @eval using Pluto
+    Pluto.run(; port=1234, threads=12, require_secret_for_access=false, launch_browser=false)
 end
 
 """
@@ -62,6 +61,22 @@ end
 "show things in vscode table"
 macro vsshow(expr)
     vscodedisplay(eval(expr))
+end
+
+"edit this file"
+function edit_startupjl()
+    edit(@__FILE__)
+end
+
+"change pkg server at runtime"
+function change_pkgserver()
+    if haskey(ENV, "JULIA_PKG_SERVER")
+        delete!(ENV, "JULIA_PKG_SERVER")
+        println("pkgserver change to origin julia website")
+    else
+        ENV["JULIA_PKG_SERVER"] = "https://mirrors.nju.edu.cn/julia/"
+        println("pkgserver change to nju server")
+    end
 end
 
 # to_expr(x) = x 
