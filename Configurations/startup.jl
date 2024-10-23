@@ -17,6 +17,27 @@ end
 
 
 ############ my functions
+function serve_my_notes()
+    cd("docs/")
+    if ispath("build")
+        cd("..")
+        println("Remove docs/build dir to preview your documentation development changes")
+        return nothing
+    end
+    Pkg.activate(".")
+    @eval using LiveServer
+    @eval servedocs(foldername=pwd())
+end
+
+function dev_my_notes()
+    cd("docs/")
+    Pkg.activate(".")
+    @eval using DocumenterVitepress
+    @eval DocumenterVitepress.dev_docs("build", md_output_path="tempsrc")
+end
+
+
+
 function connect_laptop()
     @eval using Pluto
     Pluto.run(; port=1234, threads=12, require_secret_for_access=false, launch_browser=false)
