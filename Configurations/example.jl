@@ -17,7 +17,6 @@ const b = [a[:, 2] .- a[:, 3] a[:, 3] .- a[:, 1] a[:, 1] .- a[:, 2]]
 
 
 
-
 struct Para{T<:Real}
     t1::T
     t2::T
