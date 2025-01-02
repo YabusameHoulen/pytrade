@@ -1,4 +1,3 @@
-
 test_f = [sin, cos, tan, sec, csc, cot]
 h(t) = map(f -> f(t), test_f)
 
