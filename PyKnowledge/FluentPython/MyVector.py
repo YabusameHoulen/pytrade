@@ -69,3 +69,33 @@ print(f"{test.x}")
 
 for i in test:
     print(i)
+
+print([test, test, test])
+### in order to be used as the dict key or as a set element, it must be hashable
+print({test: 1})
+print({test})
+
+
+def keyword_pattern_demo(V: Vector2d) -> None:
+    match V:
+        case Vector2d(x=0, y=0):
+            print(f"{V!a} is null !")
+        case _:
+            print(f"{V!r} is awesome !")
+
+
+keyword_pattern_demo(test)
+keyword_pattern_demo(Vector2d(0, 0))
+
+
+class Pixel:
+    __slots__ = ("x", "y")
+
+p = Pixel()
+# print(p.__dict__)
+
+class OpenPixel(Pixel):
+    pass
+
+tp = OpenPixel()
+print(tp.__dict__)
